@@ -13,38 +13,30 @@ La estructura de archivos y paquetes del proyecto se organiza de la siguiente ma
 
 /class 
 
-
 /compiler 
-        Compiler.java 
-
+    Compiler.java 
 
 /scanner 
-        Scanner.java 
-
+    Scanner.java 
 
 /parser 
-        Parser.java 
-
+    Parser.java 
 
 /ast 
-        Ast.java 
-
+    Ast.java 
 
 /semantic 
-        Semantic.java 
-
+    Semantic.java 
 
 /irt 
-        Irt.java 
-
+    Irt.java 
 
 /opt 
-        Algebraic.java 
-        ConstantF.java 
-
+    Algebraic.java 
+    ConstantF.java 
 
 /codegen 
-        Codegen.java 
+    Codegen.java 
 
 ```
 
