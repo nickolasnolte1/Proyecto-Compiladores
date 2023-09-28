@@ -9,24 +9,41 @@ Este proyecto es un compilador para el lenguaje Decaf, implementado en Java. El 
 La estructura de archivos y paquetes del proyecto se organiza de la siguiente manera:
 
 / 
+
 /class 
+
+
 /compiler 
-Compiler.java 
+        Compiler.java 
+
+
 /scanner 
-Scanner.java 
+        Scanner.java 
+
+
 /parser 
-Parser.java 
+        Parser.java 
+
+
 /ast 
-Ast.java 
+        Ast.java 
+
+
 /semantic 
-Semantic.java 
+        Semantic.java 
+
+
 /irt 
-Irt.java 
+        Irt.java 
+
+
 /opt 
-Algebraic.java 
-ConstantF.java 
+        Algebraic.java 
+        ConstantF.java 
+
+
 /codegen 
-Codegen.java 
+        Codegen.java 
 
 
 ## Uso del CLI (Interfaz de Línea de Comandos)
