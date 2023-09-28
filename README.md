@@ -41,7 +41,7 @@ La estructura de archivos y paquetes del proyecto se organiza de la siguiente ma
 ```
 
 
-## Uso del CLI (Interfaz de Línea de Comandos)
+## Uso del CLI
 
 Para compilar y ejecutar el compilador, utiliza el siguiente comando en la línea de comandos:
 
