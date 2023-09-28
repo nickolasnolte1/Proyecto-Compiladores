@@ -47,3 +47,11 @@ Para compilar y ejecutar el compilador, utiliza el siguiente comando en la líne
 
 ```bash
 java compiler [option] <filename>
+
+
+
+Opciones Disponibles:
+-o <outname>: Especifica el nombre del archivo de salida.
+-target <stage>: Define la etapa de compilación deseada (scan, parse, ast, semantic, irt, codegen).
+-opt <opt_stage>: Realiza una optimización específica (constant, algebraic).
+-debug <stage>: Activa el modo de depuración para una o varias etapas de compilación.
