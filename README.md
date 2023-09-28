@@ -8,6 +8,7 @@ Este proyecto es un compilador para el lenguaje Decaf, implementado en Java. El 
 
 La estructura de archivos y paquetes del proyecto se organiza de la siguiente manera:
 
+```
 / 
 
 /class 
@@ -44,6 +45,8 @@ La estructura de archivos y paquetes del proyecto se organiza de la siguiente ma
 
 /codegen 
         Codegen.java 
+
+```
 
 
 ## Uso del CLI (Interfaz de Línea de Comandos)
