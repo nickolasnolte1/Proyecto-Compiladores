@@ -3,7 +3,7 @@ import compiler.scanner.*;
 public class Main {
     public static void main(String[] args) {
         // Ruta del archivo de entrada para el scanner
-        String inputFile = "input.txt"; // Reemplaza con la ruta de tu archivo de entrada
+        String inputFile = "input.txt";
 
         try {
             // Inicializa el scanner con el archivo de entrada
