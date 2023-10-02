@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) throws IOException {
         //GeneratedLexer lexer = new GeneratedLexer(new BufferedReader(new InputStreamReader(System.in)));
-        GeneratedLexer lexer = new GeneratedLexer(new BufferedReader(new FileReader("/prueba.txt")));
+        GeneratedLexer lexer = new GeneratedLexer(new BufferedReader(new FileReader("input.txt")));
         // BufferedReader reader = new BufferedReader(new FileReader("prueba.txt"));
         // GeneratedLexer lexer = new GeneratedLexer(reader);
         Token token;

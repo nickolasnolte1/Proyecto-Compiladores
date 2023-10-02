@@ -24,7 +24,7 @@ class GeneratedLexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0, 0
+    0, 0
   };
 
   /**

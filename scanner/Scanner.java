@@ -42,7 +42,7 @@ public class Scanner {
     public void printErrorList(){
         System.out.println("Errors found:");
         for (Token token : ErrorList) {
-             System.out.println(token.displayErrors());
+            System.out.println(token.displayErrors());
         }
     }
 

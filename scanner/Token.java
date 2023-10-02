@@ -66,7 +66,7 @@ class Token {
     }
 
     public String displayErrors(){
-         return "\nValue: "+ this.value + "\nError found in line " + this.row + " column " + this.col + "\n";
+        return "\nValue: "+ this.value + "\nError found in line " + this.row + " column " + this.col + "\n";
     }
 
 }
