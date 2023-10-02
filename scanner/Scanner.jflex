@@ -1,4 +1,3 @@
-
 %%
 
 /* The class will be called GeneratedLexer */
@@ -119,12 +118,10 @@ DecIntegerLiteral = [0-9]
         return new Token(Token.ID, currentRow, currentCol,lexeme);
     }
 }
-
 <YYINITIAL> {
 
   /* whitespace */
   {WhiteSpace}                   { currentCol++; }
-
 
   /* Operadores y delimitadores */
   "+"                           { 
@@ -239,7 +236,6 @@ DecIntegerLiteral = [0-9]
                                     currentCol++;
                                     return new Token(Token.SCOMMENT, currentRow, currentCol, yytext()); 
                                 }
-
 
 }
 
