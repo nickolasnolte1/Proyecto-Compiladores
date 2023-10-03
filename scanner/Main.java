@@ -15,12 +15,9 @@ public class Main {
         try{
             while ((token = lexer.yylex()) != null) {
                 if (token.tag == 48) {
-                    ErrorMessg erroMs = new ErrorMessg(token.tag, token.row, token.col, token.value);
-                    System.out.println(erroMs.DisplayError());
                     ErrorList.add(token);
                 }
                 else {
-                    System.out.println("Token: " + token.tag + " Value: " + token.value + "\nRow: " + token.row + " Column: " + token.col);
                     TokenList.add(token);
                 }
                 //System.out.println("Token: " + token.tag + " Value: " + token.value + "\nRow: " + token.row + " Column: " + token.col);
