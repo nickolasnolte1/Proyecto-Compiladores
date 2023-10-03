@@ -1,5 +1,4 @@
 class Token {
-
     static final int ID = 1;
     static final int NUM = 2;
     static final int CLASS = 3;
@@ -71,12 +70,3 @@ class Token {
 
 }
 
-class ErrorMessg extends Token {
-    ErrorMessg(int t, int row, int col, Object v) {
-        super(t, row, col, v);
-    }
-
-    public String DisplayError(){
-        return "Syntax error in line " + this.row + " column " + this.col + "\n     Unexpected value: " + this.value;
-    }
-}
