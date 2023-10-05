@@ -7,13 +7,6 @@ public class Token {
     private Object value;
     public String targetToken;
 
-    // public Token(GeneratedLexer.TokenType tag, int row, int col, Object value) {
-    //     this.tag = tag;
-    //     this.row = row;
-    //     this.col = col;
-    //     this.value = value;
-    // }
-
     public Token(GeneratedLexer.TokenType id, int currentRow, int currentCol, String lexeme) {
         this.tag = id;
         this.row = currentRow;
