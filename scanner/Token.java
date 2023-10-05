@@ -16,12 +16,22 @@ public class Token {
 
 
     public String displayToken() {
-        return "\nToken TAG: " + this.tag + "\nValue: " + this.value + "\nFound in line " + this.row + " column " + this.col + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Token Information:\n");
+        sb.append("Tag: ").append(this.tag).append("\n");
+        sb.append("Value: ").append(this.value).append("\n");
+        sb.append("Location: Line ").append(this.row).append(", Column ").append(this.col).append("\n");
+        return sb.toString();
     }
 
     public String displayErrors() {
-        return "\nValue: " + this.value + "\nError found in line " + this.row + " column " + this.col + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Error Information:\n");
+        sb.append("Value: ").append(this.value).append("\n");
+        sb.append("Location: Line ").append(this.row).append(", Column ").append(this.col).append("\n");
+        return sb.toString();
     }
+    
 }
 
 
