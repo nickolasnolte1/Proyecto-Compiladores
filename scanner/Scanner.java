@@ -1,7 +1,8 @@
+import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
+
 
 
 class ErrorProcessor {
@@ -28,7 +29,7 @@ public class Scanner {
     Token token;
     try{
         while ((token = lexer.yylex()) != null) {
-            if (token.tag == 48) {
+            if (token.tag == GeneratedLexer.TokenType.ERROR) {
                 Errores.add(token);
             }
             else {
@@ -38,6 +39,7 @@ public class Scanner {
     } catch (LexicalException l){
         System.out.println(l);
     }
+
     TokenProcessor tokenProcessor = new TokenProcessor();
     ErrorProcessor errorprocessor = new ErrorProcessor();
 
