@@ -5,6 +5,8 @@
 
 @SuppressWarnings("fallthrough")
 class GeneratedLexer {
+  int currentCol;
+  int currentRow;
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -96,8 +98,8 @@ class GeneratedLexer {
     "\1\1\1\6\1\7\1\10\1\11\1\12\1\13\1\14"+
     "\2\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24"+
     "\1\25\1\26\1\1\1\27\1\30\1\0\1\31\1\32"+
-    "\1\33\1\15\1\34\1\35\1\36\1\37\2\1\1\40"+
-    "\1\41\1\42\1\43\1\36\1\44";
+    "\1\33\1\15\1\34\1\35\1\36\1\37\2\40\1\41"+
+    "\1\42\1\43\1\44\1\36\1\45";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[47];
@@ -300,11 +302,8 @@ class GeneratedLexer {
   private boolean zzEOFDone;
 
   /* user code: */
-private int currentRow = 1;
-private int currentCol = 1;
-
 private boolean isKeyword(String text) {
-    String[] keywords = {"class", "while", "int", "if", "else", "break", "boolean", "void", "for", "return", "true", "false", "continue", "callout"};
+    String[] keywords = {"class", "while", "int", "if", "else", "break", "boolean", "void", "for", "return", "true", "false", "continue","callout"};
     for (String keyword : keywords) {
         if (keyword.equals(text)) {
             return true;
@@ -315,38 +314,40 @@ private boolean isKeyword(String text) {
 
 private int getKeywordTokenType(String keyword) {
     // Define mappings from keywords to token types here
-    switch (keyword) {
-        case "class":
-            return Token.CLASS;
-        case "while":
-            return Token.WHILE;
-        case "int":
-            return Token.INT;
-        case "if":
-            return Token.IF;
-        case "else":
-            return Token.ELSE;
-        case "break":
-            return Token.BREAK;
-        case "boolean":
-            return Token.BOOLEAN;
-        case "void":
-            return Token.VOID;
-        case "for":
-            return Token.FOR;
-        case "return":
-            return Token.RETURN;
-        case "true":
-            return Token.TRUE;
-        case "false":
-            return Token.FALSE;
-        case "continue":
-            return Token.CONTINUE;
-        case "callout":
-            return Token.CALLOUT;
-        default:
-            return 0; // Return 0 for unrecognized keywords
-    }
+    if (keyword.equals("if")) {
+        return Token.IF;
+    } else if (keyword.equals("while")) {
+        return Token.WHILE;
+    } else if (keyword.equals("int")) {
+        return Token.INT;
+    } else if (keyword.equals("class")) {
+        return Token.CLASS;
+    } else if (keyword.equals("boolean")) {
+        return Token.BOOLEAN;
+    } else if (keyword.equals("void")) {
+        return Token.VOID;
+    } else if (keyword.equals("else")) {
+        return Token.ELSE;
+    } else if (keyword.equals("for")) {
+        return Token.FOR;
+    } else if (keyword.equals("return")) {
+        return Token.RETURN;
+    } else if (keyword.equals("true")) {
+        return Token.TRUE;
+    } else if (keyword.equals("false")) {
+        return Token.FALSE;
+    } else if (keyword.equals("break")) {
+        return Token.BREAK;
+    } else if (keyword.equals("continue")) {
+        return Token.CONTINUE;
+    } else if (keyword.equals("if")) {
+        return Token.IF;
+    } else if (keyword.equals("callout")) {
+        return Token.CALLOUT;
+    }    
+
+    return 0; //return null for unrecognized keywords
+    
 }
 
 
@@ -705,192 +706,232 @@ private int getKeywordTokenType(String keyword) {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { return new Token(Token.ERROR, currentRow, currentCol, yytext());
-            }
-          // fall through
-          case 37: break;
-          case 2:
-            { 
+            { currentCol++;
+                                    return new Token(Token.ERROR, currentRow, currentCol, yytext());
             }
           // fall through
           case 38: break;
-          case 3:
-            { currentRow++;
-    currentCol = 1;
+          case 2:
+            { currentCol++;
             }
           // fall through
           case 39: break;
-          case 4:
-            { return new Token(Token.NOT, currentRow, currentCol, yytext());
+          case 3:
+            { currentRow++;
+              currentCol = 1;
             }
           // fall through
           case 40: break;
-          case 5:
-            { return new Token(Token.MOD, currentRow, currentCol, yytext());
+          case 4:
+            { currentCol++;
+                                    return new Token(Token.NOT, currentRow, currentCol, yytext());
             }
           // fall through
           case 41: break;
-          case 6:
-            { return new Token(Token.PIZ, currentRow, currentCol, yytext());
+          case 5:
+            { currentCol++;
+                                    return new Token(Token.MOD, currentRow, currentCol, yytext());
             }
           // fall through
           case 42: break;
-          case 7:
-            { return new Token(Token.PDER, currentRow, currentCol, yytext());
+          case 6:
+            { currentCol++;
+                                    return new Token(Token.PIZ, currentRow, currentCol, yytext());
             }
           // fall through
           case 43: break;
-          case 8:
-            { return new Token(Token.MULTI, currentRow, currentCol, yytext());
+          case 7:
+            { currentCol++;
+                                    return new Token(Token.PDER, currentRow, currentCol, yytext());
             }
           // fall through
           case 44: break;
-          case 9:
-            { return new Token(Token.SUMA, currentRow, currentCol, yytext());
+          case 8:
+            { currentCol++;   
+                                    return new Token(Token.MULTI, currentRow, currentCol, yytext());
             }
           // fall through
           case 45: break;
-          case 10:
-            { return new Token(Token.COMA, currentRow, currentCol, yytext());
+          case 9:
+            { currentCol++;   
+                                    return new Token(Token.SUMA, currentRow, currentCol, yytext());
             }
           // fall through
           case 46: break;
-          case 11:
-            { return new Token(Token.RESTA, currentRow, currentCol, yytext());
+          case 10:
+            { currentCol++;
+                                    return new Token(Token.COMA, currentRow, currentCol, yytext());
             }
           // fall through
           case 47: break;
-          case 12:
-            { return new Token(Token.DIV, currentRow, currentCol, yytext());
+          case 11:
+            { currentCol++;   
+                                    return new Token(Token.RESTA, currentRow, currentCol, yytext());
             }
           // fall through
           case 48: break;
-          case 13:
-            { return new Token(Token.NUM, currentRow, currentCol, Integer.parseInt(yytext()));
+          case 12:
+            { currentCol++;
+                                    return new Token(Token.DIV, currentRow, currentCol, yytext());
             }
           // fall through
           case 49: break;
-          case 14:
-            { return new Token(Token.PUNTOCOMA, currentRow, currentCol, yytext());
+          case 13:
+            { currentCol++;
+                                    return new Token(Token.NUM, currentRow, currentCol, Integer.parseInt(yytext()));
             }
           // fall through
           case 50: break;
-          case 15:
-            { return new Token(Token.LESSTHAN, currentRow, currentCol, yytext());
+          case 14:
+            { currentCol++;
+                                    return new Token(Token.PUNTOCOMA, currentRow, currentCol, yytext());
             }
           // fall through
           case 51: break;
-          case 16:
-            { return new Token(Token.ASIG, currentRow, currentCol, yytext());
+          case 15:
+            { currentCol++;
+                                    return new Token(Token.LESSTHAN, currentRow, currentCol, yytext());
             }
           // fall through
           case 52: break;
-          case 17:
-            { return new Token(Token.MORETHAN, currentRow, currentCol, yytext());
+          case 16:
+            { currentCol++;
+                                    return new Token(Token.ASIG, currentRow, currentCol, yytext());
             }
           // fall through
           case 53: break;
-          case 18:
-            { return new Token(Token.CHAR, currentRow, currentCol, yytext());
+          case 17:
+            { currentCol++;
+                                    return new Token(Token.MORETHAN, currentRow, currentCol, yytext());
             }
           // fall through
           case 54: break;
-          case 19:
-            { return new Token(Token.CIZ, currentRow, currentCol, yytext());
+          case 18:
+            { currentCol++;
+                                    return new Token(Token.CHAR, currentRow, currentCol, yytext());
             }
           // fall through
           case 55: break;
-          case 20:
-            { return new Token(Token.CDER, currentRow, currentCol, yytext());
+          case 19:
+            { currentCol++;
+                                    return new Token(Token.CIZ, currentRow, currentCol, yytext());
             }
           // fall through
           case 56: break;
+          case 20:
+            { currentCol++;
+                                    return new Token(Token.CDER, currentRow, currentCol, yytext());
+            }
+          // fall through
+          case 57: break;
           case 21:
             { // Check if the matched text is a keyword or a variable
     String lexeme = yytext();
     if (isKeyword(lexeme)) {
-        return new Token(getKeywordTokenType(lexeme), currentRow, currentCol, lexeme);
+        currentCol++;  
+        return new Token(getKeywordTokenType(lexeme), currentRow, currentCol,lexeme);
     } else {
-        return new Token(Token.ID, currentRow, currentCol, lexeme);
+        currentCol++;  
+        return new Token(Token.ID, currentRow, currentCol,lexeme);
     }
             }
           // fall through
-          case 57: break;
+          case 58: break;
           case 22:
             { return new Token(Token.LIZ, currentRow, currentCol, yytext());
             }
           // fall through
-          case 58: break;
-          case 23:
-            { return new Token(Token.LDER, currentRow, currentCol, yytext());
-            }
-          // fall through
           case 59: break;
-          case 24:
-            { return new Token(Token.NOTEQUALS, currentRow, currentCol, yytext());
+          case 23:
+            { currentCol++;
+                                    return new Token(Token.LDER, currentRow, currentCol, yytext());
             }
           // fall through
           case 60: break;
-          case 25:
-            { return new Token(Token.STRING, currentRow, currentCol, yytext());
+          case 24:
+            { currentCol++;
+                                    return new Token(Token.NOTEQUALS, currentRow, currentCol, yytext());
             }
           // fall through
           case 61: break;
-          case 26:
-            { return new Token(Token.AND, currentRow, currentCol, yytext());
+          case 25:
+            { currentCol++;  
+                                    return new Token(Token.STRING, currentRow, currentCol, yytext());
             }
           // fall through
           case 62: break;
-          case 27:
-            { return new Token(Token.MULTEQUAL, currentRow, currentCol, yytext());
+          case 26:
+            { currentCol++;
+                                    return new Token(Token.AND, currentRow, currentCol, yytext());
             }
           // fall through
           case 63: break;
-          case 28:
-            { return new Token(Token.SUMEQUAL, currentRow, currentCol, yytext());
+          case 27:
+            { currentCol++;
+                                    return new Token(Token.MULTEQUAL, currentRow, currentCol, yytext());
             }
           // fall through
           case 64: break;
-          case 29:
-            { return new Token(Token.MINUSEQUAL, currentRow, currentCol, yytext());
+          case 28:
+            { currentCol++;
+                                    return new Token(Token.SUMEQUAL, currentRow, currentCol, yytext());
             }
           // fall through
           case 65: break;
-          case 30:
-            { return new Token(Token.SCOMMENT, currentRow, currentCol, yytext());
+          case 29:
+            { currentCol++;
+                                    return new Token(Token.MINUSEQUAL, currentRow, currentCol, yytext());
             }
           // fall through
           case 66: break;
-          case 31:
-            { return new Token(Token.DIVEQUAL, currentRow, currentCol, yytext());
+          case 30:
+            { currentCol++;
+                                    return new Token(Token.SCOMMENT, currentRow, currentCol, yytext());
             }
           // fall through
           case 67: break;
-          case 32:
-            { return new Token(Token.LESSEQUALS, currentRow, currentCol, yytext());
+          case 31:
+            { currentCol++;
+                                    return new Token(Token.DIVEQUAL, currentRow, currentCol, yytext());
             }
           // fall through
           case 68: break;
-          case 33:
-            { return new Token(Token.EQUALS, currentRow, currentCol, yytext());
+          case 32:
+            { currentCol++;  
+                                    return new Token(Token.ERROR, currentRow, currentCol, yytext());
             }
           // fall through
           case 69: break;
-          case 34:
-            { return new Token(Token.MOREEQUALS, currentRow, currentCol, yytext());
+          case 33:
+            { currentCol++;
+                                    return new Token(Token.LESSEQUALS, currentRow, currentCol, yytext());
             }
           // fall through
           case 70: break;
-          case 35:
-            { return new Token(Token.OR, currentRow, currentCol, yytext());
+          case 34:
+            { currentCol++;
+                                    return new Token(Token.EQUALS, currentRow, currentCol, yytext());
             }
           // fall through
           case 71: break;
-          case 36:
-            { return new Token(Token.HEXA, currentRow, currentCol, yytext());
+          case 35:
+            { currentCol++; 
+                                    return new Token(Token.MOREEQUALS, currentRow, currentCol, yytext());
             }
           // fall through
           case 72: break;
+          case 36:
+            { currentCol++;
+                                    return new Token(Token.OR, currentRow, currentCol, yytext());
+            }
+          // fall through
+          case 73: break;
+          case 37:
+            { currentCol++;
+                                    return new Token(Token.HEXA, currentRow, currentCol, yytext());
+            }
+          // fall through
+          case 74: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
