@@ -1,4 +1,3 @@
-# Definición de variables
 JAVAC = javac
 JAVA = java
 MAIN_CLASS = Scanner
