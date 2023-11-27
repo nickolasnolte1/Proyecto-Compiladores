@@ -31,7 +31,7 @@ public class sym {
   public static final int DIV = 14;
   public static final int MORETHAN = 19;
   public static final int LDER = 29;
-  public static final int error = 1;
+  public static final int ERROR = 1;
   public static final int PUNTOCOMA = 25;
   public static final int FOR = 7;
   public static final int VOID = 5;
@@ -40,7 +40,7 @@ public class sym {
   public static final int RESTA = 12;
   public static final String[] terminalNames = new String[] {
   "EOF",
-  "error",
+  "ERROR",
   "CLASS",
   "INT",
   "BOOLEAN",

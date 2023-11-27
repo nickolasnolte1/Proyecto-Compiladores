@@ -1,0 +1,6 @@
+class ExampleClass{
+ return 5;
+}
+
+
+

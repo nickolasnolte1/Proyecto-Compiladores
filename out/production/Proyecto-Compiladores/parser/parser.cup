@@ -6,7 +6,7 @@ terminal SUMA, RESTA, MULTI, DIV, MOD;
 terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT;
 terminal PUNTOCOMA;
 terminal PIZ, PDER, LIZ, LDER;
-terminal ID, NUM;
+terminal ID, NUM, TRUE, FALSE, CALLOUT, COMA, ASIG, CIZ, CDER, STRING, MULTEQUAL, SUMEQUAL, MINUSEQUAL, SCOMMENT, DIVEQUAL, HEXA;
 
 /* Non terminals */
 non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations, Statements;
@@ -35,7 +35,7 @@ Block ::=
 
 Statements ::=
     Statement Statements
-  | ;
+  | INT;
 
 Statement ::=
     WHILE PIZ Expression PDER Statement
