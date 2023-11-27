@@ -1,6 +1,22 @@
-class ExampleClass{
- return 5;
-}
+class SimpleClass {
+    void simpleMethod() {
+        int x;
+        return x;
+    }
 
+    void prueba2(){
+        int valor;
+        1+2;
+        return valor;
+    }
+
+    boolean myMethod() {
+        return 1 < 2 && 3 > 2;
+    }
+
+    void myMethod2() {
+            int a = 5;
+        }
+}
 
 

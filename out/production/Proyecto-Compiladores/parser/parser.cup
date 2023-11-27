@@ -1,6 +1,5 @@
 import java_cup.runtime.*;
 
-/* Terminals (tokens returned by the scanner). */
 terminal CLASS, INT, BOOLEAN, VOID, WHILE, FOR, RETURN, BREAK, CONTINUE;
 terminal SUMA, RESTA, MULTI, DIV, MOD;
 terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT;
@@ -8,95 +7,100 @@ terminal PUNTOCOMA;
 terminal PIZ, PDER, LIZ, LDER;
 terminal ID, NUM, TRUE, FALSE, CALLOUT, COMA, ASIG, CIZ, CDER, STRING, MULTEQUAL, SUMEQUAL, MINUSEQUAL, SCOMMENT, DIVEQUAL, HEXA;
 
-/* Non terminals */
-non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations, Statements;
+
+non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations, Statements, Assignment;
 non terminal LogicalOrExpression, LogicalAndExpression, EqualityExpression, RelationalExpression, AdditiveExpression, MultiplicativeExpression, UnaryExpression, PrimaryExpression;
 
-/* The grammar */
+
 Program ::=
-    ClassDeclaration+;
+    ClassDeclaration+ ;
 
 ClassDeclaration ::=
     CLASS ID LIZ
-    MethodDeclarations
-    LDER;
+        MethodDeclarations
+    LDER ;
 
 MethodDeclarations ::=
     MethodDeclaration MethodDeclarations
-  | ;
+  |  ;
 
 MethodDeclaration ::=
     Type ID PIZ PDER LIZ
-    Block
-    LDER;
+        Block
+    LDER ;
 
 Block ::=
-    Statements;
+    Statements ;
 
 Statements ::=
     Statement Statements
-  | INT;
+  | /* empty */ ;
 
 Statement ::=
     WHILE PIZ Expression PDER Statement
-  | FOR PIZ PUNTOCOMA Expression PUNTOCOMA PDER Statement
+  | FOR PIZ Expression PUNTOCOMA Expression PUNTOCOMA Expression PDER Statement
   | RETURN Expression PUNTOCOMA
   | BREAK PUNTOCOMA
   | CONTINUE PUNTOCOMA
   | LIZ Block LDER
   | VariableDeclaration
-  | Expression PUNTOCOMA;
+  | Assignment;
+
 
 VariableDeclaration ::=
-    Type ID PUNTOCOMA;
+    Type ID PUNTOCOMA ;
+
+Assignment ::=
+    ID ASIG Expression PUNTOCOMA;
 
 Expression ::=
-    LogicalOrExpression;
+    LogicalOrExpression ;
 
 LogicalOrExpression ::=
     LogicalAndExpression
-  | LogicalOrExpression OR LogicalAndExpression;
+  | LogicalOrExpression OR LogicalAndExpression ;
 
 LogicalAndExpression ::=
     EqualityExpression
-  | LogicalAndExpression AND EqualityExpression;
+  | LogicalAndExpression AND EqualityExpression ;
 
 EqualityExpression ::=
     RelationalExpression
   | EqualityExpression EQUALS RelationalExpression
-  | EqualityExpression NOTEQUALS RelationalExpression;
+  | EqualityExpression NOTEQUALS RelationalExpression ;
 
 RelationalExpression ::=
     AdditiveExpression
   | RelationalExpression LESSTHAN AdditiveExpression
   | RelationalExpression MORETHAN AdditiveExpression
   | RelationalExpression LESSEQUALS AdditiveExpression
-  | RelationalExpression MOREEQUALS AdditiveExpression;
+  | RelationalExpression MOREEQUALS AdditiveExpression ;
 
 AdditiveExpression ::=
     MultiplicativeExpression
   | AdditiveExpression SUMA MultiplicativeExpression
-  | AdditiveExpression RESTA MultiplicativeExpression;
+  | AdditiveExpression RESTA MultiplicativeExpression ;
 
 MultiplicativeExpression ::=
     UnaryExpression
   | MultiplicativeExpression MULTI UnaryExpression
   | MultiplicativeExpression DIV UnaryExpression
-  | MultiplicativeExpression MOD UnaryExpression;
+  | MultiplicativeExpression MOD UnaryExpression ;
 
 UnaryExpression ::=
     PrimaryExpression
-  | NOT UnaryExpression;
+  | NOT UnaryExpression ;
 
 PrimaryExpression ::=
     NUM
   | ID
-  | PIZ Expression PDER;
+  | PIZ Expression PDER ;
 
 Type ::=
     INT
   | BOOLEAN
-  | VOID;
+  | VOID ;
+
 
 
 

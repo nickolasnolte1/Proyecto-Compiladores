@@ -6,38 +6,52 @@
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int MOD = 15;
-  public static final int AND = 22;
-  public static final int CONTINUE = 10;
-  public static final int CLASS = 2;
-  public static final int OR = 23;
-  public static final int INT = 3;
-  public static final int PIZ = 26;
-  public static final int WHILE = 6;
-  public static final int SUMA = 11;
-  public static final int NOT = 24;
-  public static final int MULTI = 13;
-  public static final int PDER = 27;
-  public static final int RETURN = 8;
   public static final int LESSEQUALS = 20;
-  public static final int ID = 30;
-  public static final int NUM = 31;
-  public static final int BOOLEAN = 4;
-  public static final int NOTEQUALS = 17;
   public static final int EQUALS = 16;
-  public static final int LESSTHAN = 18;
-  public static final int EOF = 0;
-  public static final int BREAK = 9;
-  public static final int DIV = 14;
-  public static final int MORETHAN = 19;
-  public static final int LDER = 29;
-  public static final int ERROR = 1;
-  public static final int PUNTOCOMA = 25;
-  public static final int FOR = 7;
-  public static final int VOID = 5;
-  public static final int LIZ = 28;
-  public static final int MOREEQUALS = 21;
+  public static final int HEXA = 45;
   public static final int RESTA = 12;
+  public static final int CONTINUE = 10;
+  public static final int INT = 3;
+  public static final int PUNTOCOMA = 25;
+  public static final int CDER = 38;
+  public static final int FOR = 7;
+  public static final int NOT = 24;
+  public static final int AND = 22;
+  public static final int CALLOUT = 34;
+  public static final int LESSTHAN = 18;
+  public static final int OR = 23;
+  public static final int MOREEQUALS = 21;
+  public static final int CLASS = 2;
+  public static final int DIVEQUAL = 44;
+  public static final int DIV = 14;
+  public static final int NUM = 31;
+  public static final int SUMA = 11;
+  public static final int LIZ = 28;
+  public static final int ID = 30;
+  public static final int CIZ = 37;
+  public static final int EOF = 0;
+  public static final int BOOLEAN = 4;
+  public static final int MULTEQUAL = 40;
+  public static final int ASIG = 36;
+  public static final int RETURN = 8;
+  public static final int TRUE = 32;
+  public static final int ERROR = 1;
+  public static final int COMA = 35;
+  public static final int PDER = 27;
+  public static final int MOD = 15;
+  public static final int BREAK = 9;
+  public static final int VOID = 5;
+  public static final int SCOMMENT = 43;
+  public static final int MINUSEQUAL = 42;
+  public static final int NOTEQUALS = 17;
+  public static final int WHILE = 6;
+  public static final int MORETHAN = 19;
+  public static final int MULTI = 13;
+  public static final int STRING = 39;
+  public static final int FALSE = 33;
+  public static final int LDER = 29;
+  public static final int SUMEQUAL = 41;
+  public static final int PIZ = 26;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "ERROR",
@@ -70,10 +84,21 @@ public class sym {
   "LIZ",
   "LDER",
   "ID",
-  "NUM"
+  "NUM",
+  "TRUE",
+  "FALSE",
+  "CALLOUT",
+  "COMA",
+  "ASIG",
+  "CIZ",
+  "CDER",
+  "STRING",
+  "MULTEQUAL",
+  "SUMEQUAL",
+  "MINUSEQUAL",
+  "SCOMMENT",
+  "DIVEQUAL",
+  "HEXA"
   };
 }
-
-
-
 
