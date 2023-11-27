@@ -3,11 +3,10 @@
 /* The class will be called GeneratedLexer */
 %class GeneratedLexer
 %implements java_cup.runtime.Scanner
-
-%type java_cup.runtime.Symbol
+%function next_token
 
 /* The yylex() method will return an instance of Token */
-%type Token
+%type java_cup.runtime.Symbol
 
 /* The yylex() method will throw a LexicalException */
 %scanerror LexicalException
@@ -45,7 +44,6 @@ private static final Set<String> keywords = new HashSet<>();
         return keywords.contains(text);
     }
 
-In this code, I've used a static initializer block to initialize the keywords set with the keywords you provided. The isKeyword method checks if the input text is present in the set using the contains method, which is an efficient way to determine membership in a set. The code works the same way as your original code but with improved efficiency for keyword lookup.
 
 
 
