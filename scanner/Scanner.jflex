@@ -7,7 +7,7 @@
 %type java_cup.runtime.Symbol
 
 /* The yylex() method will return an instance of Token */
-%type Token
+%type java_cup.runtime.Symbol
 
 /* The yylex() method will throw a LexicalException */
 %scanerror LexicalException
