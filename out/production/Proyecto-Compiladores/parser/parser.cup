@@ -34,7 +34,7 @@ Block ::=
 
 Statements ::=
     Statement Statements
-  | /* empty */ ;
+  | ;
 
 Statement ::=
     WHILE PIZ Expression PDER Statement
