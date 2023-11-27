@@ -1,0 +1,72 @@
+import java_cup.runtime.*;
+
+/* Terminals (tokens returned by the scanner). */
+terminal CLASS, INT, BOOLEAN, VOID, IF, ELSE, WHILE, FOR, RETURN, TRUE, FALSE, BREAK, CONTINUE;
+terminal PLUS, MINUS, TIMES, DIVIDE, MOD;
+terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT;
+terminal ASSIGN, SEMI, COMMA, LPAREN, RPAREN, LBRACE, RBRACE, LBRACK, RBRACK;
+terminal ID, NUM;
+
+/* Non terminals */
+non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations;
+
+/* The grammar */
+Program ::= 
+    ClassDeclaration+:classDeclarations;
+
+ClassDeclaration ::= 
+    CLASS ID LBRACE 
+    MethodDeclarations 
+    RBRACE;
+
+MethodDeclarations ::= 
+    | MethodDeclaration MethodDeclarations
+    | ;
+
+MethodDeclaration ::= 
+    Type ID LPAREN RPAREN LBRACE 
+    Block 
+    RBRACE;
+
+Block ::= 
+    Statement;
+
+Statement ::= 
+    VariableDeclaration
+  | Expression SEMI
+  | IF LPAREN Expression RPAREN Statement
+  | IF LPAREN Expression RPAREN Statement ELSE Statement
+  | WHILE LPAREN Expression RPAREN Statement
+  | FOR LPAREN SEMI Expression SEMI RPAREN Statement
+  | RETURN Expression SEMI
+  | BREAK SEMI
+  | CONTINUE SEMI
+  | Block;
+
+VariableDeclaration ::= 
+    Type ID SEMI;
+
+Expression ::= 
+    Expression PLUS Expression
+  | Expression MINUS Expression
+  | Expression TIMES Expression
+  | Expression DIVIDE Expression
+  | Expression LESSTHAN Expression
+  | Expression MORETHAN Expression
+  | LPAREN Expression RPAREN
+  | NUM
+  | ID;
+
+Type ::= 
+    INT 
+  | BOOLEAN 
+  | VOID;
+
+// Define operator precedences
+precedence left OR, AND, NOT;
+precedence left EQUALS, NOTEQUALS;
+precedence left LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE, MOD;
+
+
