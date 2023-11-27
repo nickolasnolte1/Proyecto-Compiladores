@@ -2,6 +2,9 @@
 
 /* The class will be called GeneratedLexer */
 %class GeneratedLexer
+%implements java_cup.runtime.Scanner
+%type java_cup.runtime.Symbol
+%function next_token
 
 /* The yylex() method will return an instance of Token */
 %type Token
@@ -57,7 +60,6 @@ public int currentCol;
 public int currentRow;
 
 private static final Map<String, Integer> keywordToTokenType = new HashMap<>();
-
     static {
         keywordToTokenType.put("if", TokenType.IF);
         keywordToTokenType.put("while", TokenType.WHILE);
@@ -94,7 +96,7 @@ DecIntegerLiteral = [0-9]
 
 %%
 
-/* Now we define keywords in our grammer
+/* Now we define keywords in our grammar
  * When the input string matches the regex on the left the action on the right
  * is performed. The action is java code. The regex matches longest match by
  * default. The lexer starts in the <YYINITIAL> state.
@@ -103,21 +105,21 @@ DecIntegerLiteral = [0-9]
     currentRow++;
     currentCol = 1;
   }
-  [-+]?[0-9]+                   { 
+  [-+]?[0-9]+                   {
                                     currentCol++;
-                                    return new Token(TokenType.NUM, currentRow, currentCol, Integer.parseInt(yytext())); 
+                                    return new Token(TokenType.NUM, currentRow, currentCol, Integer.parseInt(yytext()));
                                 }
-  0x[0-9a-fA-F]+                { 
+  0x[0-9a-fA-F]+                {
                                     currentCol++;
-                                    return new Token(TokenType.HEXA, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.HEXA, currentRow, currentCol, yytext());
                                 }
-  [a-zA-Z]                      { 
+  [a-zA-Z]                      {
                                     currentCol++;
-                                    return new Token(TokenType.CHAR, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.CHAR, currentRow, currentCol, yytext());
                                 }
   \"[^\"]*\"                    {
-                                    currentCol++;  
-                                    return new Token(TokenType.STRING, currentRow, currentCol, yytext()); 
+                                    currentCol++;
+                                    return new Token(TokenType.STRING, currentRow, currentCol, yytext());
                                 }
 
 
@@ -125,10 +127,10 @@ DecIntegerLiteral = [0-9]
     // Check if the matched text is a keyword or a variable
     String lexeme = yytext();
     if (isKeyword(lexeme)) {
-        currentCol++;  
+        currentCol++;
         return new Token(getKeywordTokenType(lexeme), currentRow, currentCol,lexeme);
     } else {
-        currentCol++;  
+        currentCol++;
         return new Token(Token.ID, currentRow, currentCol,lexeme);
     }
 }
@@ -138,123 +140,123 @@ DecIntegerLiteral = [0-9]
   {WhiteSpace}                   { currentCol++; }
 
   /* Operadores y delimitadores */
-  "+"                           { 
-                                    currentCol++;   
+  "+"                           {
+                                    currentCol++;
                                     return new Token(TokenType.SUMA, currentRow, currentCol, yytext());
                                 }
-  "-"                           { 
-                                    currentCol++;   
-                                    return new Token(TokenType.RESTA, currentRow, currentCol, yytext()); 
-                                }
-  "*"                           { 
-                                    currentCol++;   
-                                    return new Token(TokenType.MULTI, currentRow, currentCol, yytext()); 
-                                }
-  "/"                           { 
+  "-"                           {
                                     currentCol++;
-                                    return new Token(TokenType.DIV, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.RESTA, currentRow, currentCol, yytext());
                                 }
-  "%"                           { 
+  "*"                           {
                                     currentCol++;
-                                    return new Token(TokenType.MOD, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.MULTI, currentRow, currentCol, yytext());
                                 }
-  "="                           { 
+  "/"                           {
                                     currentCol++;
-                                    return new Token(TokenType.ASIG, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.DIV, currentRow, currentCol, yytext());
                                 }
-  "=="                          { 
+  "%"                           {
                                     currentCol++;
-                                    return new Token(TokenType.EQUALS, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.MOD, currentRow, currentCol, yytext());
                                 }
-  "!="                          { 
+  "="                           {
                                     currentCol++;
-                                    return new Token(TokenType.NOTEQUALS, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.ASIG, currentRow, currentCol, yytext());
                                 }
-  "<"                           { 
+  "=="                          {
                                     currentCol++;
-                                    return new Token(TokenType.LESSTHAN, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.EQUALS, currentRow, currentCol, yytext());
                                 }
-  "<="                          { 
+  "!="                          {
                                     currentCol++;
-                                    return new Token(TokenType.LESSEQUALS, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.NOTEQUALS, currentRow, currentCol, yytext());
                                 }
-  ">"                           { 
+  "<"                           {
                                     currentCol++;
-                                    return new Token(TokenType.MORETHAN, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.LESSTHAN, currentRow, currentCol, yytext());
+                                }
+  "<="                          {
+                                    currentCol++;
+                                    return new Token(TokenType.LESSEQUALS, currentRow, currentCol, yytext());
+                                }
+  ">"                           {
+                                    currentCol++;
+                                    return new Token(TokenType.MORETHAN, currentRow, currentCol, yytext());
                                 }
   ">="                          {
-                                    currentCol++; 
-                                    return new Token(TokenType.MOREEQUALS, currentRow, currentCol, yytext()); 
-                                }
-  "&&"                          { 
                                     currentCol++;
-                                    return new Token(TokenType.AND, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.MOREEQUALS, currentRow, currentCol, yytext());
                                 }
-  "||"                          { 
+  "&&"                          {
                                     currentCol++;
-                                    return new Token(TokenType.OR, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.AND, currentRow, currentCol, yytext());
                                 }
-  "!"                           { 
+  "||"                          {
                                     currentCol++;
-                                    return new Token(TokenType.NOT, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.OR, currentRow, currentCol, yytext());
                                 }
-  ";"                           { 
+  "!"                           {
                                     currentCol++;
-                                    return new Token(TokenType.PUNTOCOMA, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.NOT, currentRow, currentCol, yytext());
                                 }
-  ","                           { 
+  ";"                           {
                                     currentCol++;
-                                    return new Token(TokenType.COMA, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.PUNTOCOMA, currentRow, currentCol, yytext());
                                 }
-  "("                           { 
+  ","                           {
                                     currentCol++;
-                                    return new Token(TokenType.PIZ, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.COMA, currentRow, currentCol, yytext());
                                 }
-  ")"                           { 
+  "("                           {
                                     currentCol++;
-                                    return new Token(TokenType.PDER, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.PIZ, currentRow, currentCol, yytext());
                                 }
-  "{"                           { 
+  ")"                           {
+                                    currentCol++;
+                                    return new Token(TokenType.PDER, currentRow, currentCol, yytext());
+                                }
+  "{"                           {
 
-                                    return new Token(TokenType.LIZ, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.LIZ, currentRow, currentCol, yytext());
                                 }
-  "}"                           { 
+  "}"                           {
                                     currentCol++;
-                                    return new Token(TokenType.LDER, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.LDER, currentRow, currentCol, yytext());
                                 }
-  "["                           { 
+  "["                           {
                                     currentCol++;
-                                    return new Token(TokenType.CIZ, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.CIZ, currentRow, currentCol, yytext());
                                 }
   "]"                           {
                                     currentCol++;
-                                    return new Token(TokenType.CDER, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.CDER, currentRow, currentCol, yytext());
                                 }
-  "+="                          { 
+  "+="                          {
                                     currentCol++;
-                                    return new Token(TokenType.SUMEQUAL, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.SUMEQUAL, currentRow, currentCol, yytext());
                                 }
-  "-="                          { 
+  "-="                          {
                                     currentCol++;
-                                    return new Token(TokenType.MINUSEQUAL, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.MINUSEQUAL, currentRow, currentCol, yytext());
                                 }
-  "*="                          { 
+  "*="                          {
                                     currentCol++;
-                                    return new Token(TokenType.MULTEQUAL, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.MULTEQUAL, currentRow, currentCol, yytext());
                                 }
-  "/="                          { 
+  "/="                          {
                                     currentCol++;
-                                    return new Token(TokenType.DIVEQUAL, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.DIVEQUAL, currentRow, currentCol, yytext());
                                 }
-  "//"(.)*\n?                   { 
+  "//"(.)*\n?                   {
                                     currentCol++;
-                                    return new Token(TokenType.SCOMMENT, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.SCOMMENT, currentRow, currentCol, yytext());
                                 }
 
 }
 
 /* error fallback */
-[^]                             { 
+[^]                             {
                                     currentCol++;
-                                    return new Token(TokenType.ERROR, currentRow, currentCol, yytext()); 
+                                    return new Token(TokenType.ERROR, currentRow, currentCol, yytext());
                                 }

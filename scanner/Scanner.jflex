@@ -4,7 +4,6 @@
 %class GeneratedLexer
 %implements java_cup.runtime.Scanner
 %type java_cup.runtime.Symbol
-%function next_token
 
 /* The yylex() method will return an instance of Token */
 %type Token
