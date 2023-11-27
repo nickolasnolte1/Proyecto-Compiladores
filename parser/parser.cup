@@ -1,72 +1,109 @@
 import java_cup.runtime.*;
 
 /* Terminals (tokens returned by the scanner). */
-terminal CLASS, INT, BOOLEAN, VOID, IF, ELSE, WHILE, FOR, RETURN, TRUE, FALSE, BREAK, CONTINUE;
-terminal PLUS, MINUS, TIMES, DIVIDE, MOD;
-terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT;
-terminal ASSIGN, SEMI, COMMA, LPAREN, RPAREN, LBRACE, RBRACE, LBRACK, RBRACK;
-terminal ID, NUM;
+terminal CLASS, INT, BOOLEAN, VOID, WHILE, FOR, RETURN, BREAK, CONTINUE;
+terminal SUMA, RESTA, MULTI, DIV, MOD; // Arithmetic Operators
+terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT; // Relational and Logical Operators
+terminal PUNTOCOMA; // Delimiters
+terminal PIZ, PDER, LIZ, LDER; // Parentheses and Braces
+terminal ID, NUM; // Identifiers and Numbers
 
 /* Non terminals */
-non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations;
+non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations, Statements;
+non terminal LogicalOrExpression, LogicalAndExpression, EqualityExpression, RelationalExpression, AdditiveExpression, MultiplicativeExpression, UnaryExpression, PrimaryExpression;
 
 /* The grammar */
-Program ::= 
-    ClassDeclaration+:classDeclarations;
+Program ::=
+    ClassDeclaration+;
 
-ClassDeclaration ::= 
-    CLASS ID LBRACE 
-    MethodDeclarations 
-    RBRACE;
+ClassDeclaration ::=
+    CLASS ID LIZ
+    MethodDeclarations
+    LDER;
 
-MethodDeclarations ::= 
-    | MethodDeclaration MethodDeclarations
-    | ;
+MethodDeclarations ::=
+    MethodDeclaration MethodDeclarations
+  | ;
 
-MethodDeclaration ::= 
-    Type ID LPAREN RPAREN LBRACE 
-    Block 
-    RBRACE;
+MethodDeclaration ::=
+    Type ID PIZ PDER LIZ
+    Block
+    LDER;
 
-Block ::= 
-    Statement;
+Block ::=
+    Statements;
 
-Statement ::= 
-    VariableDeclaration
-  | Expression SEMI
-  | IF LPAREN Expression RPAREN Statement
-  | IF LPAREN Expression RPAREN Statement ELSE Statement
-  | WHILE LPAREN Expression RPAREN Statement
-  | FOR LPAREN SEMI Expression SEMI RPAREN Statement
-  | RETURN Expression SEMI
-  | BREAK SEMI
-  | CONTINUE SEMI
-  | Block;
+Statements ::=
+    Statement Statements
+  | ;
 
-VariableDeclaration ::= 
-    Type ID SEMI;
+Statement ::=
+    WHILE PIZ Expression PDER Statement
+  | FOR PIZ PUNTOCOMA Expression PUNTOCOMA PDER Statement
+  | RETURN Expression PUNTOCOMA
+  | BREAK PUNTOCOMA
+  | CONTINUE PUNTOCOMA
+  | LIZ Block LDER
+  | VariableDeclaration
+  | Expression PUNTOCOMA;
 
-Expression ::= 
-    Expression PLUS Expression
-  | Expression MINUS Expression
-  | Expression TIMES Expression
-  | Expression DIVIDE Expression
-  | Expression LESSTHAN Expression
-  | Expression MORETHAN Expression
-  | LPAREN Expression RPAREN
-  | NUM
-  | ID;
+VariableDeclaration ::=
+    Type ID PUNTOCOMA;
 
-Type ::= 
-    INT 
-  | BOOLEAN 
+Expression ::=
+    LogicalOrExpression;
+
+LogicalOrExpression ::=
+    LogicalAndExpression
+  | LogicalOrExpression OR LogicalAndExpression;
+
+LogicalAndExpression ::=
+    EqualityExpression
+  | LogicalAndExpression AND EqualityExpression;
+
+EqualityExpression ::=
+    RelationalExpression
+  | EqualityExpression EQUALS RelationalExpression
+  | EqualityExpression NOTEQUALS RelationalExpression;
+
+RelationalExpression ::=
+    AdditiveExpression
+  | RelationalExpression LESSTHAN AdditiveExpression
+  | RelationalExpression MORETHAN AdditiveExpression
+  | RelationalExpression LESSEQUALS AdditiveExpression
+  | RelationalExpression MOREEQUALS AdditiveExpression;
+
+AdditiveExpression ::=
+    MultiplicativeExpression
+  | AdditiveExpression SUMA MultiplicativeExpression
+  | AdditiveExpression RESTA MultiplicativeExpression;
+
+MultiplicativeExpression ::=
+    UnaryExpression
+  | MultiplicativeExpression MULTI UnaryExpression
+  | MultiplicativeExpression DIV UnaryExpression
+  | MultiplicativeExpression MOD UnaryExpression;
+
+UnaryExpression ::=
+    PrimaryExpression
+  | NOT UnaryExpression;
+
+PrimaryExpression ::=
+    NUM
+  | ID
+  | PIZ Expression PDER;
+
+Type ::=
+    INT
+  | BOOLEAN
   | VOID;
 
-// Define operator precedences
-precedence left OR, AND, NOT;
-precedence left EQUALS, NOTEQUALS;
-precedence left LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS;
-precedence left PLUS, MINUS;
-precedence left TIMES, DIVIDE, MOD;
+
+
+
+
+
+
+
 
 
