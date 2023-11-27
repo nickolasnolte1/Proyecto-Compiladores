@@ -2,11 +2,11 @@ import java_cup.runtime.*;
 
 /* Terminals (tokens returned by the scanner). */
 terminal CLASS, INT, BOOLEAN, VOID, WHILE, FOR, RETURN, BREAK, CONTINUE;
-terminal SUMA, RESTA, MULTI, DIV, MOD; // Arithmetic Operators
-terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT; // Relational and Logical Operators
-terminal PUNTOCOMA; // Delimiters
-terminal PIZ, PDER, LIZ, LDER; // Parentheses and Braces
-terminal ID, NUM; // Identifiers and Numbers
+terminal SUMA, RESTA, MULTI, DIV, MOD;
+terminal EQUALS, NOTEQUALS, LESSTHAN, MORETHAN, LESSEQUALS, MOREEQUALS, AND, OR, NOT;
+terminal PUNTOCOMA;
+terminal PIZ, PDER, LIZ, LDER;
+terminal ID, NUM;
 
 /* Non terminals */
 non terminal Program, ClassDeclaration, MethodDeclaration, Block, Statement, Expression, Type, VariableDeclaration, MethodDeclarations, Statements;

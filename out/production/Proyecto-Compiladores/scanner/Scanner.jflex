@@ -3,8 +3,8 @@
 /* The class will be called GeneratedLexer */
 %class GeneratedLexer
 %implements java_cup.runtime.Scanner
+
 %type java_cup.runtime.Symbol
-%function next_token
 
 /* The yylex() method will return an instance of Token */
 %type Token
@@ -17,6 +17,11 @@
 /* Code in the next section is copied into the generated lexer class.
  */
   %{
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java_cup.runtime.Symbol;
 private static final Set<String> keywords = new HashSet<>();
 
     static {
@@ -77,8 +82,8 @@ private static final Map<String, Integer> keywordToTokenType = new HashMap<>();
         keywordToTokenType.put("callout", TokenType.CALLOUT);
     }
 
-    private int getKeywordTokenType(String keyword) {
-        return keywordToTokenType.getOrDefault(keyword, 0);
+    private TokenType getKeywordTokenType(String keyword) {
+        return keywordToTokenType.getOrDefault(keyword, TokenType.ID);
     }
 %}
 
@@ -131,7 +136,7 @@ DecIntegerLiteral = [0-9]
         return new Token(getKeywordTokenType(lexeme), currentRow, currentCol,lexeme);
     } else {
         currentCol++;
-        return new Token(Token.ID, currentRow, currentCol,lexeme);
+        return new Token(TokenType.ID, currentRow, currentCol,lexeme);
     }
 }
 <YYINITIAL> {
